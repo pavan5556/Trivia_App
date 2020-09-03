@@ -1,4 +1,4 @@
-package com.pavan.triviaapp.ui.main;
+package com.pavan.triviaapp.ui.main.pages;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pavan.triviaapp.R;
+import com.pavan.triviaapp.ui.main.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ import java.util.List;
 
 public class Question2Fragment extends Fragment {
 
+
+    private MainViewModel viewModel;
 
     public Question2Fragment() {
     }
@@ -48,6 +51,8 @@ public class Question2Fragment extends Fragment {
         final CheckBox orangecb = view.findViewById(R.id.checkbox3);
         final CheckBox greencb = view.findViewById(R.id.checkbox4);
         FloatingActionButton nextBtn = view.findViewById(R.id.next_fab_question2);
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
         whitecb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -101,7 +106,10 @@ public class Question2Fragment extends Fragment {
         });
 
         final SharedPreferences preferences = requireContext().getSharedPreferences("trivia", Context.MODE_PRIVATE);
+
         final MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+        //Saving Selection in SharedPreferences.
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,5 +124,11 @@ public class Question2Fragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.setTitle("Question 2");
     }
 }

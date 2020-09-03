@@ -1,4 +1,4 @@
-package com.pavan.triviaapp.source.livedatas;
+package com.pavan.triviaapp.source.SharedPrefLivedatas;
 
 import android.content.SharedPreferences;
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_summary"
-    tools:context=".ui.main.SummaryFragment">
+    tools:context=".ui.main.pages.SummaryFragment">
 
     <TextView
         android:id="@+id/name_tv_summary"

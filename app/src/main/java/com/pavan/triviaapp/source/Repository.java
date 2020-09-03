@@ -4,14 +4,10 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.pavan.triviaapp.source.data.Dummy;
-import com.pavan.triviaapp.source.data.local.DatabaseClient;
-import com.pavan.triviaapp.source.data.local.SummaryDao;
-import com.pavan.triviaapp.source.model.Options;
-import com.pavan.triviaapp.source.model.Question;
+import com.pavan.triviaapp.source.local.DatabaseClient;
+import com.pavan.triviaapp.source.local.SummaryDao;
 import com.pavan.triviaapp.source.model.Summary;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
@@ -26,14 +22,6 @@ public class Repository {
         if (repository == null)
             repository = new Repository();
         return repository;
-    }
-
-    public List<Question> getQustions() {
-        return Dummy.getQuestionList();
-    }
-
-    public List<Options> getOptions() {
-        return Dummy.getOptionsList();
     }
 
 

@@ -34,6 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         HistoryViewModel viewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
 
+        //Getting SummaryLivedata from Database and updating Recyclerview Adapter.
         viewModel.getAllSummary(this).observe(this, new Observer<List<Summary>>() {
             @Override
             public void onChanged(List<Summary> summaries) {

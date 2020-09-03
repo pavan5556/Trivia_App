@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.pavan.triviaapp.ui.main.pages.Question1Fragment;
+import com.pavan.triviaapp.ui.main.pages.Question2Fragment;
+import com.pavan.triviaapp.ui.main.pages.SummaryFragment;
+
 public class PagerAdapter extends FragmentPagerAdapter {
 
 
@@ -22,7 +26,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new Question2Fragment();
             default:
-                return SummaryFragment.newInstance();
+                return new SummaryFragment();
         }
     }
 

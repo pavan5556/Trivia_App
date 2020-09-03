@@ -1,4 +1,4 @@
-package com.pavan.triviaapp.source.data.local;
+package com.pavan.triviaapp.source.local;
 
 import android.content.Context;
 

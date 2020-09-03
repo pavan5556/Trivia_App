@@ -8,23 +8,20 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.pavan.triviaapp.source.Repository;
-import com.pavan.triviaapp.source.livedatas.StringPrefLiveData;
-import com.pavan.triviaapp.source.model.Options;
-import com.pavan.triviaapp.source.model.Question;
+import com.pavan.triviaapp.source.SharedPrefLivedatas.StringPrefLiveData;
 import com.pavan.triviaapp.source.model.Summary;
-
-import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> positionMutableLivedata = new MutableLiveData<>();
+    private MutableLiveData<String> appbarTitleMutableLiveData = new MutableLiveData<>();
 
-    public List<Question> getQuestions() {
-        return Repository.getInstance().getQustions();
+    public void setTitle(String title) {
+        appbarTitleMutableLiveData.postValue(title);
     }
 
-    public List<Options> getOptions() {
-        return Repository.getInstance().getOptions();
+    public LiveData<String> getTitle() {
+        return appbarTitleMutableLiveData;
     }
 
     public void nextClicked(boolean position) {
@@ -36,7 +33,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public void saveMatch(Summary summary, Context context) {
-        Repository.getInstance().saveSummaryToDb(summary,context);
+        Repository.getInstance().saveSummaryToDb(summary, context);
     }
 
     public LiveData<String> getName(SharedPreferences preferences) {
@@ -54,7 +51,4 @@ public class MainViewModel extends ViewModel {
 
     }
 
-//    public MutableLiveData<Answer> getAnswer() {
-//        return answerMutableLiveData;
-//    }
 }

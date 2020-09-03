@@ -1,4 +1,4 @@
-package com.pavan.triviaapp.ui.main;
+package com.pavan.triviaapp.ui.main.pages;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,10 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pavan.triviaapp.R;
 import com.pavan.triviaapp.source.model.Summary;
+import com.pavan.triviaapp.ui.main.MainViewModel;
 
 import java.util.Calendar;
 
@@ -29,14 +29,10 @@ public class SummaryFragment extends Fragment {
     private String name;
     private String ans1;
     private String ans2;
+    private MainViewModel viewModel;
 
     public SummaryFragment() {
         // Required empty public constructor
-    }
-
-    public static SummaryFragment newInstance() {
-        return new SummaryFragment();
-
     }
 
     @Override
@@ -53,9 +49,11 @@ public class SummaryFragment extends Fragment {
         final TextView answer2 = view.findViewById(R.id.answer2_summary);
         final TextView nametv = view.findViewById(R.id.name_tv_summary);
         Button finishbtn = view.findViewById(R.id.finish_button);
-        final MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
         SharedPreferences preferences = requireContext().getSharedPreferences("trivia", Context.MODE_PRIVATE);
+
+        //Getting values from SharedPreferences using Livedata.
         viewModel.getName(preferences).observe(requireActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -80,6 +78,7 @@ public class SummaryFragment extends Fragment {
             }
         });
 
+        //Saving Summary to Database.
         finishbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,5 +94,11 @@ public class SummaryFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.setTitle("Summary");
     }
 }

@@ -26,10 +26,14 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         final Handler handler = new Handler(Looper.myLooper());
 
+        //Using Bottomsheet to input name for the quiz. Bottom sheet also has History Button to view history.
+
         final BottomSheetDialog dialog = new BottomSheetDialog(SplashActivity.this);
         dialog.setContentView(R.layout.bottomssheet_addname);
         final TextInputEditText nameET = dialog.findViewById(R.id.addname_et);
         final TextInputLayout textInputLayout = dialog.findViewById(R.id.addname_textInputLayout);
+
+        //Checking for empty name, if not saving the name and opening MainActivity.
         dialog.findViewById(R.id.next_iv_bottomsheet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +57,8 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //finishing Splash Activity onDismiss BottomSheet
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
@@ -64,6 +70,8 @@ public class SplashActivity extends AppCompatActivity {
                 }, 100);
             }
         });
+
+        //Showing BottomSheet after a delay.
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

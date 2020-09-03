@@ -8,10 +8,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 
 import com.pavan.triviaapp.R;
-import com.pavan.triviaapp.source.model.Question;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Extended ViewPager to override touchevents.
         final QuizViewPager viewPager = findViewById(R.id.viewpager);
         MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
 
+        //OnClick next button increase the current position of ViewPager.
         viewModel.getposition().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -35,18 +33,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        nextCardview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (currentPosition < questions.size()) {
-//                    currentPosition = viewPager.getCurrentItem() + 1;
-//                    viewPager.setCurrentItem(currentPosition);
-//                }
-//                if (currentPosition == questions.size()) {
-//                    nextCardview.setVisibility(View.INVISIBLE);
-//                }
-//            }
-//        });
+        //Setting title of Appbar with respect to Fragment shown.
+        viewModel.getTitle().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String title) {
+                getSupportActionBar().setTitle(title);
+            }
+        });
 
     }
 }
